@@ -1,0 +1,22 @@
+[package]
+name = "pharos_backend"
+version = "0.1.0"
+edition = "2021"
+authors = ["Kyugito666"]
+
+# Source code reference: linuxdil
+# Repositories: pharos-r2-bot, pharos-autostaking-bot, pharos-grandline-bot, etc.
+
+[dependencies]
+tonic = "0.11"
+prost = "0.12"
+tokio = { version = "1.36", features = ["macros", "rt-multi-thread"] }
+ethers = { version = "2.0", features = ["full"] }
+reqwest = { version = "0.12", features = ["json", "socks"] }
+serde_json = "1.0"
+chrono = "0.4"
+hex = "0.4"
+colored = "2.1"
+
+[build-dependencies]
+tonic-build = "0.11"
