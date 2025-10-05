@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package pharos;
+
+// Service utama yang akan diimplementasikan oleh Rust Backend
+service PharosService {
+  // RPC untuk menjalankan bot tertentu
+  rpc RunBot(BotRequest) returns (stream BotResponse);
+}
+
+// Pesan permintaan dari C# ke Rust
+message BotRequest {
+  string bot_name = 1;
+  map<string, string> parameters = 2; // Untuk parameter seperti jumlah, delay, dll.
+  repeated string private_keys = 3;
+  repeated string proxies = 4;
+}
+
+// Pesan respons (streaming) dari Rust ke C# untuk update log
+message BotResponse {
+  string timestamp = 1;
+  string message = 2;
+  enum LogLevel {
+    INFO = 0;
+    SUCCESS = 1;
+    WARN = 2;
+    ERROR = 3;
+  }
+  LogLevel level = 3;
+}
